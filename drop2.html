@@ -1,0 +1,117 @@
+<!-- drop2.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop 2 - Texas Iron Spikes Merch</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            font-weight: bold;
+            color: #253775;
+            cursor: pointer;
+        }
+
+        .product-container {
+            display: flex;
+            gap: 0.1in;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-info {
+            flex: 1;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1in;
+            max-width: 100%;
+        }
+
+        .product-images img {
+            width: 100%;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .scroll-container {
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        /* Style for the dropdown menu */
+        .size-dropdown {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header" onclick="goToHomePage()">
+        <h1>Texas Iron Spikes Merch</h1>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-container">
+        <div class="product-info">
+            <h2 id="productName">Product Name</h2>
+            <p id="productPrice">Price: $29.99 USD</p>
+            <div class="size-dropdown">
+                <label for="size">Size:</label>
+                <select id="size" onchange="updateQuantity()">
+                    <!-- Size options will be dynamically added here -->
+                </select>
+            </div>
+            <p id="productQuantity">Quantity: 1</p>
+        </div>
+        <div class="scroll-container">
+            <div class="product-images" id="productImages">
+                <!-- Product images will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample product data for Drop 2 (replace this with your actual product data)
+        const productId = parseInt(new URLSearchParams(window.location.search).get('id'));
+        const productData = {
+            // Define product data for Drop 2
+        };
+
+        // Function to navigate to the home page
+        function goToHomePage() {
+            window.location.href = "index.html";
+        }
+
+        // Function to display product details on the page
+        function displayProductDetails() {
+            // ... (similar to product.html, with specific data for Drop 2)
+        }
+
+        // Function to update the quantity based on the selected size
+        function updateQuantity() {
+            // ... (similar to product.html, with specific data for Drop 2)
+        }
+
+        // Call the function to display product details when the page loads
+        window.onload = displayProductDetails;
+    </script>
+
+</body>
+</html>
