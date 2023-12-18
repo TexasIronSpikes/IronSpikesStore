@@ -1,0 +1,179 @@
+<!-- product.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Texas Iron Spikes Merch</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, sans-serif;
+        }
+
+        .header {
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            font-weight: bold;
+            color: #253775;
+            cursor: pointer;
+        }
+
+        .product-container {
+            display: flex;
+            gap: 0.1in;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product-info {
+            flex: 1;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+        }
+
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1in;
+            max-width: 100%;
+        }
+
+        .product-images img {
+            width: 100%;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .scroll-container {
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        /* Style for the dropdown menu */
+        .size-dropdown {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (Home button) -->
+    <div class="header" onclick="goToHomePage()">
+        <h1>Texas Iron Spikes Merch</h1>
+    </div>
+
+    <!-- Product Details -->
+    <div class="product-container">
+        <div class="product-info">
+            <h2 id="productName">Product Name</h2>
+            <p id="productPrice">Price: $29.99 USD</p>
+            <div class="size-dropdown">
+                <label for="size">Size:</label>
+                <select id="size" onchange="updateQuantity()">
+                    <!-- Size options will be dynamically added here -->
+                </select>
+            </div>
+            <p id="productQuantity">Quantity: 1</p>
+        </div>
+        <div class="scroll-container">
+            <div class="product-images" id="productImages">
+                <!-- Product images will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to navigate to the home page
+        function goToHomePage() {
+            window.location.href = "index.html";
+        }
+
+        // Sample product data (replace this with your actual product data)
+        const productId = parseInt(new URLSearchParams(window.location.search).get('id'));
+        const productData = {
+            1: { name: 'Product 1', price: 19.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 5, medium: 10, large: 8, 'extra-large': 3 }, images: ['product1_1.jpg', 'product1_2.jpg', 'product1_3.jpg', 'product1_4.jpg', 'product1_5.jpg'] },
+            2: { name: 'Product 2', price: 29.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 7, medium: 12, large: 6, 'extra-large': 2 }, images: ['product2_1.jpg', 'product2_2.jpg', 'product2_3.jpg', 'product2_4.jpg', 'product2_5.jpg'] },
+            3: { name: 'Product 3', price: 24.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 3, medium: 8, large: 5, 'extra-large': 1 }, images: ['product3_1.jpg', 'product3_2.jpg', 'product3_3.jpg', 'product3_4.jpg', 'product3_5.jpg'] },
+            4: { name: 'Product 4', price: 39.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 10, medium: 15, large: 12, 'extra-large': 4 }, images: ['product4_1.jpg', 'product4_2.jpg', 'product4_3.jpg', 'product4_4.jpg', 'product4_5.jpg'] },
+            5: { name: 'Product 5', price: 49.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 8, medium: 13, large: 10, 'extra-large': 2 }, images: ['product5_1.jpg', 'product5_2.jpg', 'product5_3.jpg', 'product5_4.jpg', 'product5_5.jpg'] },
+            6: { name: 'Product 6', price: 29.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 6, medium: 11, large: 7, 'extra-large': 3 }, images: ['product6_1.jpg', 'product6_2.jpg', 'product6_3.jpg', 'product6_4.jpg', 'product6_5.jpg'] },
+            7: { name: 'Product 7', price: 34.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 4, medium: 9, large: 6, 'extra-large': 2 }, images: ['product7_1.jpg', 'product7_2.jpg', 'product7_3.jpg', 'product7_4.jpg', 'product7_5.jpg'] },
+            8: { name: 'Product 8', price: 19.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 9, medium: 14, large: 11, 'extra-large': 5 }, images: ['product8_1.jpg', 'product8_2.jpg', 'product8_3.jpg', 'product8_4.jpg', 'product8_5.jpg'] },
+            9: { name: 'Product 9', price: 44.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 5, medium: 10, large: 8, 'extra-large': 3 }, images: ['product9_1.jpg', 'product9_2.jpg', 'product9_3.jpg', 'product9_4.jpg', 'product9_5.jpg'] },
+            10: { name: 'Product 10', price: 54.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 7, medium: 12, large: 6, 'extra-large': 2 }, images: ['product10_1.jpg', 'product10_2.jpg', 'product10_3.jpg', 'product10_4.jpg', 'product10_5.jpg'] },
+            11: { name: 'Product 11', price: 29.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 3, medium: 8, large: 5, 'extra-large': 1 }, images: ['product11_1.jpg', 'product11_2.jpg', 'product11_3.jpg', 'product11_4.jpg', 'product11_5.jpg'] },
+            12: { name: 'Product 12', price: 39.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 10, medium: 15, large: 12, 'extra-large': 4 }, images: ['product12_1.jpg', 'product12_2.jpg', 'product12_3.jpg', 'product12_4.jpg', 'product12_5.jpg'] },
+            13: { name: 'Product 13', price: 24.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 8, medium: 13, large: 10, 'extra-large': 2 }, images: ['product13_1.jpg', 'product13_2.jpg', 'product13_3.jpg', 'product13_4.jpg', 'product13_5.jpg'] },
+            14: { name: 'Product 14', price: 49.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 6, medium: 11, large: 7, 'extra-large': 3 }, images: ['product14_1.jpg', 'product14_2.jpg', 'product14_3.jpg', 'product14_4.jpg', 'product14_5.jpg'] },
+            15: { name: 'Product 15', price: 59.99, sizes: ['small', 'medium', 'large', 'extra-large'], quantity: { small: 4, medium: 9, large: 6, 'extra-large': 2 }, images: ['product15_1.jpg', 'product15_2.jpg', 'product15_3.jpg', 'product15_4.jpg', 'product15_5.jpg'] },
+        };
+
+        // Function to display product details on the page
+        function displayProductDetails() {
+            const productNameElement = document.getElementById('productName');
+            const productPriceElement = document.getElementById('productPrice');
+            const sizeDropdown = document.getElementById('size');
+            const productQuantityElement = document.getElementById('productQuantity');
+            const productImagesContainer = document.getElementById('productImages');
+
+            // Check if the product ID is valid
+            if (productId && productData[productId]) {
+                const product = productData[productId];
+
+                // Update product details on the page
+                productNameElement.textContent = product.name;
+                productPriceElement.textContent = `Price: $${product.price.toFixed(2)} USD`;
+
+                // Populate size dropdown
+                sizeDropdown.innerHTML = '';
+                product.sizes.forEach(size => {
+                    const option = document.createElement('option');
+                    option.value = size;
+                    option.textContent = size.charAt(0).toUpperCase() + size.slice(1);
+                    sizeDropdown.appendChild(option);
+                });
+
+                // Update quantity based on the selected size
+                updateQuantity();
+                
+                // Dynamically add product images to the container
+                product.images.forEach(image => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = image;
+                    imgElement.alt = product.name;
+                    productImagesContainer.appendChild(imgElement);
+                });
+            } else {
+                // If the product ID is invalid, redirect to the home page or display an error message
+                window.location.href = 'index.html';
+                // Alternatively, you can display an error message on the product page
+                // document.body.innerHTML = '<p>Error: Product not found</p>';
+            }
+        }
+
+        // Function to update the quantity based on the selected size
+        function updateQuantity() {
+            const sizeDropdown = document.getElementById('size');
+            const productQuantityElement = document.getElementById('productQuantity');
+            
+            // Get the selected size
+            const selectedSize = sizeDropdown.value;
+
+            // Check if the selected size is valid
+            if (product.quantity[selectedSize]) {
+                // Update the quantity element
+                productQuantityElement.textContent = `Quantity: ${product.quantity[selectedSize]}`;
+            }
+        }
+
+        // Call the function to display product details when the page loads
+        window.onload = displayProductDetails;
+    </script>
+
+</body>
+</html>

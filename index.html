@@ -1,0 +1,148 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TXIS Store</title>
+    <style>
+        /* Add your own styling here */
+        body {
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        .header {
+            text-align: center;
+            background-color: #f0f0f0; /* Light grey background color */
+            padding: 10px;
+            font-weight: bold;
+            color: #253775; /* Update the text color to #253775 */
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #253775;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .separator {
+            border-top: 1px solid #ccc; /* Light grey horizontal line */
+            margin-top: 0.1in; /* 1 inch from the top */
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 0.3in; /* Gap between rows */
+        }
+
+        .product {
+            text-align: center;
+            margin: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 18%; /* Adjusted width for 5 products per row */
+            box-sizing: border-box;
+            cursor: pointer; /* Add pointer cursor to indicate it's clickable */
+        }
+
+        .product img {
+            width: 100%; /* Make sure the image fills the container */
+            cursor: pointer; /* Add pointer cursor to the image */
+        }
+
+        .product-info {
+            text-align: left;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Texas Iron Spikes Merch</h1>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="nav-links">
+        <a href="drop1.html" class="nav-link">Drop 1</a>
+        <a href="drop2.html" class="nav-link">Drop 2</a>
+        <a href="drop3.html" class="nav-link">Drop 3</a>
+        <a href="drop4.html" class="nav-link">Drop 4</a>
+        <a href="drop5.html" class="nav-link">Drop 5</a>
+    </div>
+
+    <!-- Separator -->
+    <div class="separator"></div>
+
+    <!-- Products -->
+    <div class="product-container" id="products-container">
+        <!-- Product items will be dynamically added here -->
+    </div>
+
+    <script>
+        // Sample product data (replace this with your actual product data)
+        const products = [
+            { id: 1, title: 'Product 1', price: 19.99, images: ['product1_1.jpg', 'product1_2.jpg'] },
+            { id: 2, title: 'Product 2', price: 29.99, images: ['product2_1.jpg', 'product2_2.jpg'] },
+            { id: 3, title: 'Product 3', price: 24.99, images: ['product3_1.jpg', 'product3_2.jpg'] },
+            { id: 4, title: 'Product 4', price: 39.99, images: ['product4_1.jpg', 'product4_2.jpg'] },
+            { id: 5, title: 'Product 5', price: 49.99, images: ['product5_1.jpg', 'product5_2.jpg'] },
+            { id: 6, title: 'Product 6', price: 29.99, images: ['product6_1.jpg', 'product6_2.jpg'] },
+            { id: 7, title: 'Product 7', price: 34.99, images: ['product7_1.jpg', 'product7_2.jpg'] },
+            { id: 8, title: 'Product 8', price: 19.99, images: ['product8_1.jpg', 'product8_2.jpg'] },
+            { id: 9, title: 'Product 9', price: 44.99, images: ['product9_1.jpg', 'product9_2.jpg'] },
+            { id: 10, title: 'Product 10', price: 54.99, images: ['product10_1.jpg', 'product10_2.jpg'] },
+            { id: 11, title: 'Product 11', price: 29.99, images: ['product11_1.jpg', 'product11_2.jpg'] },
+            { id: 12, title: 'Product 12', price: 39.99, images: ['product12_1.jpg', 'product12_2.jpg'] },
+            { id: 13, title: 'Product 13', price: 24.99, images: ['product13_1.jpg', 'product13_2.jpg'] },
+            { id: 14, title: 'Product 14', price: 49.99, images: ['product14_1.jpg', 'product14_2.jpg'] },
+            { id: 15, title: 'Product 15', price: 59.99, images: ['product15_1.jpg', 'product15_2.jpg'] },
+        ];
+
+        // Function to dynamically create product elements
+        function createProductElement(product) {
+            const productElement = document.createElement('div');
+            productElement.classList.add('product');
+            productElement.innerHTML = `
+                <img src="${product.images[0]}" alt="${product.title}">
+                <div class="product-info">
+                    <h3>${product.title}</h3>
+                    <p>${product.price.toFixed(2)} USD</p>
+                </div>
+            `;
+
+            // Add click event listener to each product element
+            productElement.addEventListener('click', () => {
+                window.location.href = `product.html?id=${product.id}`;
+            });
+
+            return productElement;
+        }
+
+        // Function to display products on the page
+        function displayProducts() {
+            const productsContainer = document.getElementById('products-container');
+            products.forEach(product => {
+                const productElement = createProductElement(product);
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        // Call the function to display products when the page loads
+        window.onload = displayProducts;
+    </script>
+
+</body>
+</html>
